@@ -1,16 +1,5 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
 use App\Http\Controllers\SampleController;
 
 use function App\Http\Controllers\message_sample;
@@ -19,43 +8,32 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/sample_action', 'SampleController@sample_action');
-
-Route::get('/blade_sample', function () {
-    $title = 'bladeテンプレートのサンプルです';
-    $description = 'bladeテンプレートを利用すると、HTML内にPHPの変数を埋め込むことができます。';
-    return view('blade_sample',[
-        'title' => $title,
-        'description' => $description,
-    ]);
-});
-
-Route::get('/message_sample', 'SampleController@message_sample');
-
-Route::get('/message_practice', 'SampleController@message_practice');
-
-Route::get('/blade_example','SampleController@blade_example');
-
 /*簡易メッセージアプリ用ルーティング*/
 
 Route::get('/messages','MessagesController@index');
 Route::post('/messages', 'MessagesController@create');
 
+// admin用ルーティング
+
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::group(['prefix' => 'admin'], function(){
+    //home
+    Route::get('home', 'Admin\HomeController@index')->name('admin.home');
+    //login logout   
+    Route::get('login', 'Admin\Auth\LoginController@showLoginForm')->name('admin.login');
+    Route::post('login', 'Admin\Auth\LoginController@login')->name('admin.login');
+    Route::post('logout', 'Admin\Auth\LoginController@logout')->name('admin.logout');
+    //register
+    Route::get('register', 'Admin\Auth\RegisterController@showRegisterForm')->name('admin.register');
+    Route::post('register', 'Admin\Auth\RegisterController@register')->name('admin.register');
 
-
-Route::prefix('admin')->name('admin::')->group(function() {
-    // ログインフォーム
-    Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
-    // ログイン処理
-    Route::post('login', 'Auth\LoginController@login');
-    //ログアウト処理
-    Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 });
 
 // admin認証が必要なページ
 Route::middleware('auth:admin')->group(function () {
     Route::get('admin', 'AdminController@index');
 });
+
+
+Route::get('/home', 'HomeController@index')->name('home');

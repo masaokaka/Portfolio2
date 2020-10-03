@@ -8,19 +8,9 @@ use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Login Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles authenticating users for the application and
-    | redirecting them to your home screen. The controller uses a trait
-    | to conveniently provide its functionality to your applications.
-    |
-    */
 
-    //use AuthenticatesUsers;
-    use AuthenticatesUsers{
+    use AuthenticatesUsers {
+        // logout というメソッドを、doLogoutというメソッド名に変更して継承する
         logout as doLogout;
     }
 
@@ -29,7 +19,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/messages';
+    protected $redirectTo = '/messages'; //リダイレクト先
 
     /**
      * Create a new controller instance.
@@ -42,7 +32,9 @@ class LoginController extends Controller
     }
 
     public function logout(Request $request){
+        // 1. 元々のログアウト処理を実行する
         $this->doLogout($request);
-        return redirect('/login');
+        // 2. リダイレクト先を独自に設定する。
+        return redirect('/login'); 
     }
 }
