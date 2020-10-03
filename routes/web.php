@@ -5,16 +5,23 @@ use App\Http\Controllers\SampleController;
 use function App\Http\Controllers\message_sample;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('top');
 });
 
-/*簡易メッセージアプリ用ルーティング*/
+//ゲスト用ルーティング
 
-Route::get('/messages','MessagesController@index');
-Route::post('/messages', 'MessagesController@create');
+//home
+Route::get('home', 'HomeController@index')->name('home');
+//login logout   
+Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
+Route::post('login', 'Auth\LoginController@login')->name('login');
+Route::post('logout', 'Auth\LoginController@logout')->name('logout');
+//register
+Route::get('register', 'Auth\RegisterController@showRegisterForm')->name('register');
+Route::post('register', 'Auth\RegisterController@register')->name('register');
+
 
 // admin用ルーティング
-
 Auth::routes();
 
 Route::group(['prefix' => 'admin'], function(){

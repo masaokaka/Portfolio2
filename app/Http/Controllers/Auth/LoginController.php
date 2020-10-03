@@ -19,7 +19,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/messages'; //リダイレクト先
+    protected $redirectTo = '/home'; //リダイレクト先
 
     /**
      * Create a new controller instance.
