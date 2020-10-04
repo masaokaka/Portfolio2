@@ -3,11 +3,8 @@
 namespace App\Exceptions;
 
 use Exception;
-use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
-
-use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\Auth\AuthenticationException;
+use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
 class Handler extends ExceptionHandler
 {
@@ -63,7 +60,7 @@ class Handler extends ExceptionHandler
        }
 
        if(in_array('admin', $exception->guards())){
-           return redirect()->guest('admin/login');
+           return redirect()->guest(route('admin.login'));
        }
 
        return redirect()->guest(route('login'));

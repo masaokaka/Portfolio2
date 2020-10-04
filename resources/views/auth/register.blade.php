@@ -69,6 +69,7 @@
                             </div>
                         </div>
                     </form>
+                    <div class="col-md-6 col-md-offset-4"><a href="{{ route('admin.register') }}">社員の方はこちら</a></div>
                 </div>
             </div>
         </div>

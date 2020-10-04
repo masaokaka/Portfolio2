@@ -2,13 +2,13 @@
 
 return [
 
+    /*Authentifivcation default*/
     'defaults' => [
         'guard' => 'web',
         'passwords' => 'users',
     ],
 
-    
-
+    /*Authentifivcation guards*/
     'guards' => [
         'web' => [
             'driver' => 'session',
@@ -24,8 +24,14 @@ return [
             'driver' => 'token',
             'provider' => 'users',
         ],
+
+        'user' => [
+            'driver' => 'session',
+            'provider' => 'users',
+        ],
     ],
 
+    /*User providers*/
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
@@ -43,7 +49,7 @@ return [
         // ],
     ],
 
-
+    /*Resetting password*/
     'passwords' => [
         'users' => [
             'provider' => 'users',

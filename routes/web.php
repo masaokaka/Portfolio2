@@ -1,11 +1,11 @@
 <?php
 
-use App\Http\Controllers\SampleController;
-
-use function App\Http\Controllers\message_sample;
-
 Route::get('/', function () {
     return view('top');
+});
+
+Route::get('/check', function () {
+    return view('check');
 });
 
 //ゲスト用ルーティング
@@ -41,6 +41,3 @@ Route::group(['prefix' => 'admin'], function(){
 Route::middleware('auth:admin')->group(function () {
     Route::get('admin', 'AdminController@index');
 });
-
-
-Route::get('/home', 'Admin\HomeController@index')->name('home');
