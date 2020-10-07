@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <form method="POST" action="{{ route('login') }}">
+        <form method="POST" action="{{ route('request') }}">
             <div class="col">
                 <h2>面談リクエスト</h2>    
             </div>
