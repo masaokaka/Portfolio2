@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin\Auth;
 
 use App\User;
 use App\Admin;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Admin\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 

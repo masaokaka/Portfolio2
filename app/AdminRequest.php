@@ -12,5 +12,11 @@ class AdminRequest extends Model
      * @var array
      */
     protected $fillable = [
-        'date', 'time','interview','admin_id'
+        'date', 'time','interview','admin_id'];
+    
+    public static $rules = array(
+        'date' => 'required|date',
+        'time' => 'required|integer',
+        'interview' => 'required|string',
+    );
 }

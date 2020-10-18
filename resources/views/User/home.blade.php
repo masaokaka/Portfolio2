@@ -3,7 +3,8 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <form method="POST" action="{{ route('request') }}">
+        <form method="POST" action="{{ route('home') }}">
+            {{  csrf_field()  }}
             <div class="col">
                 <h2>面談リクエスト</h2>    
             </div>
@@ -11,13 +12,13 @@
                 <h3>日時</h3>
                 <input type="date" name="date" min="<?php echo date("Y-m-d");?>" max="<?php echo date("Y-m-d", strtotime('+10 day'));?>">
                 <select name="time">
-                    <option value="09:00〜10:00">09:00〜10:00</option>
-                    <option value="10:00〜11:00">10:00〜11:00</option>
-                    <option value="11:00〜12:00">11:00〜12:00</option>
-                    <option value="13:00〜14:00">13:00〜14:00</option>
-                    <option value="14:00〜15:00">14:00〜15:00</option>
-                    <option value="15:00〜116:00">15:00〜16:00</option>
-                    <option value="16:00〜17:00">16:00〜17:00</option>
+                    <option value="1">09:00〜10:00</option>
+                    <option value="2">10:00〜11:00</option>
+                    <option value="3">11:00〜12:00</option>
+                    <option value="4">13:00〜14:00</option>
+                    <option value="5">14:00〜15:00</option>
+                    <option value="6">15:00〜16:00</option>
+                    <option value="7">16:00〜17:00</option>
                 </select>
             </div>
             <div class="col">
@@ -33,7 +34,7 @@
             </div>
             <div class="col">
                 <h3>OBOG</h3>
-                <label><input type="checkbox" name="obog" value="yes">希望する</label>
+                <label><input type="checkbox" name="obog" value="1">希望する</label>
             </div>
             <div class="col">
                 <h3>性別</h3>
@@ -54,7 +55,7 @@
                 <label><input type="radio" name="interview" value="offline">オフライン</label>
                 <label><input type="radio" name="interview" value="na">どちらでも良い</label>
             </div>
-            <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+            <input type="hidden" name="admin_id" value="{{ Auth::user()->id }}">
             <div class="col">
                 <button type="submit" class="btn btn-primary">リクエスト送信</button>
             </div>

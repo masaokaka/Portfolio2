@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\AdminRequest;
+use DateTime;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
-use App\Http\Controllers\controller;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Admin\controller;
 
 class HomeController extends Controller
 {
@@ -24,33 +28,40 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('admin.home');
-    }
-
-    protected function validator(array $data)
-    {
-        return Validator::make($data, [
-            'date' => 'required|date',
-            'time' => 'required|string',
-            'interview' => 'required|string',
-            'admin_id' => 'required',
-        ]);
+        $msg = ['msg'=>'',];
+        return view('admin.home', $msg);
     }
 
     /**
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
-     * @return \App\User
+     * @return \App\AdminRequest
      */
-    protected function create(array $data)
+    public function request(Request $request)
     {
-        return Admin::create([
-            'date' => $data['date'],
-            'time' => $data['time'],
-            'interview' => $data['interview'],
-            'admin_id' => $data['admin_id'],
-        ]);
+        $date = new DateTime();
+        $this->validate($request, AdminRequest::$rules);
+        //アップデート
+        if(AdminRequest::find($request->admin_id)){
+            $param = AdminRequest::find($request->admin_id);
+            $form = $request->all();
+            $param->fill($form)->save();
+            $msg = ['msg'=>'リクエストの更新に成功しました。',];
+        //新規リクエスト
+        }else{
+            $param = [
+                'date' => $request['date'],
+                'time' => $request['time'],
+                'interview' => $request['interview'],
+                'admin_id' => $request['admin_id'],
+                'created_at' => $date,
+                 'updated_at' => $date,
+            ];
+            DB::table('admin_requests')->insert($param);
+            $msg = ['msg'=>'リクエストの送信に成功しました。',];
+        }
+        return view('admin/home',$msg);
     }
 
     protected function guard()

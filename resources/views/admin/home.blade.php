@@ -3,21 +3,23 @@
 @section('content')
 <div class="container">
     <div class="row">
-    <form method="POST" action="{{ route('admin.request') }}">
+        <form method="POST" action="{{ route('admin.home') }}">
+            {{  csrf_field() }}
             <div class="col">
-                <h2>面談リクエスト</h2>    
+                <h2>面談リクエスト</h2>   
             </div>
+            <p>{{ $msg }}</p>
             <div class="col">
                 <h3>日時</h3>
                 <input type="date" name="date" min="<?php echo date("Y-m-d");?>" max="<?php echo date("Y-m-d", strtotime('+10 day'));?>">
                 <select name="time">
-                    <option value="09:00〜10:00">09:00〜10:00</option>
-                    <option value="10:00〜11:00">10:00〜11:00</option>
-                    <option value="11:00〜12:00">11:00〜12:00</option>
-                    <option value="13:00〜14:00">13:00〜14:00</option>
-                    <option value="14:00〜15:00">14:00〜15:00</option>
-                    <option value="15:00〜116:00">15:00〜16:00</option>
-                    <option value="16:00〜17:00">16:00〜17:00</option>
+                    <option value="1">09:00〜10:00</option>
+                    <option value="2">10:00〜11:00</option>
+                    <option value="3">11:00〜12:00</option>
+                    <option value="4">13:00〜14:00</option>
+                    <option value="5">14:00〜15:00</option>
+                    <option value="6">15:00〜16:00</option>
+                    <option value="7">16:00〜17:00</option>
                 </select>
             </div>
             <div class="col">

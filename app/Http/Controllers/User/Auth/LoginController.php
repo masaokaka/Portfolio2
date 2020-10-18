@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\User\Auth;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\User\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 
@@ -35,6 +35,6 @@ class LoginController extends Controller
         // 1. 元々のログアウト処理を実行する
         $this->doLogout($request);
         // 2. リダイレクト先を独自に設定する。
-        return redirect('/login'); 
+        return redirect('login');
     }
 }
