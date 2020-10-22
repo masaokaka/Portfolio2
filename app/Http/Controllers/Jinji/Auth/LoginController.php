@@ -46,6 +46,6 @@ class LoginController extends Controller
         $request->session()->flush();
         $request->session()->regenerate();
  
-        return redirect('/jinji/login'); 
+        return redirect('jinji/login'); 
     }
 }

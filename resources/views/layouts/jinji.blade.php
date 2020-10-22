@@ -76,13 +76,13 @@
 
                                 <ul class="dropdown-menu">
                                     <li>
-                                        <a href="{{ route('admin.logout') }}"
+                                        <a href="{{ route('jinji.logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                             {{ __('Logout') }}
                                         </a>
 
-                                        <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" style="display: none;">
+                                        <form id="logout-form" action="{{ route('jinji.logout') }}" method="POST" style="display: none;">
                                             {{ csrf_field() }}
                                         </form>
                                     </li>
