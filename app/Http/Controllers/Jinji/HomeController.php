@@ -3,6 +3,11 @@
 namespace App\Http\Controllers\Jinji;
 
 use App\Http\Controllers\controller;
+use App\Jinji;
+use App\User;
+use App\Admin;
+use App\AdminRequest;
+use App\UserRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
@@ -25,7 +30,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('jinji.home');
+        $users = User::all();
+        return view('jinji.home', ['users' => $users]);
     }
 
     protected function guard()

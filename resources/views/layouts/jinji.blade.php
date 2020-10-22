@@ -16,6 +16,18 @@
         body{
             background-color: skyblue;
         }
+        th{
+            background-color: #999;
+            border: solid 1px black;
+            color: #fff;
+            padding: 5px 10px;
+        }
+        td{
+            background-color: #fff;
+            border: solid 1px black;
+            color: black;
+            padding: 5px 10px;
+        }
     </style>
 </head>
 <body>
