@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\User\Auth;
 
-use App\Http\Controllers\User\Controller;
+use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -19,7 +20,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home'; //リダイレクト先
+    protected $redirectTo = '/home'; 
 
     /**
      * Create a new controller instance.
@@ -29,6 +30,16 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    public function showLoginForm()
+    {
+        return view('user.auth.login');
+    }
+
+    protected function guard()
+    {
+        return Auth::guard('user');
     }
 
     public function logout(Request $request){

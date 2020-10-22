@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Auth;
+namespace App\Http\Controllers\Jinji\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -18,7 +18,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/admin/home';
+    protected $redirectTo = '/jinji/home';
     
     /**
      * Create a new controller instance.
@@ -27,25 +27,25 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest:admin')->except('logout');
+        $this->middleware('guest:jinji')->except('logout');
     }
 
     public function showLoginForm()
     {
-        return view('admin.auth.login');
+        return view('jinji.auth.login');
     }
 
     protected function guard()
     {
-        return Auth::guard('admin');
+        return Auth::guard('jinji');
     }
 
     public function logout(Request $request)
     {
-        Auth::guard('admin')->logout();
+        Auth::guard('jinji')->logout();
         $request->session()->flush();
         $request->session()->regenerate();
  
-        return redirect('/admin/login'); 
+        return redirect('/jinji/login'); 
     }
 }

@@ -7,7 +7,8 @@ use DateTime;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Http\Controllers\Admin\controller;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\controller;
 
 class HomeController extends Controller
 {
@@ -43,8 +44,8 @@ class HomeController extends Controller
         $date = new DateTime();
         $this->validate($request, AdminRequest::$rules);
         //アップデート
-        if(AdminRequest::find($request->admin_id)){
-            $param = AdminRequest::find($request->admin_id);
+        if(AdminRequest::where('admin_id',$request->admin_id)){
+            $param = AdminRequest::where('admin_id',$request->admin_id)->first();
             $form = $request->all();
             $param->fill($form)->save();
             $msg = ['msg'=>'リクエストの更新に成功しました。',];
@@ -66,6 +67,6 @@ class HomeController extends Controller
 
     protected function guard()
     {
-        return \Auth::guard('admin');
+        return Auth::guard('admin');
     }
 }

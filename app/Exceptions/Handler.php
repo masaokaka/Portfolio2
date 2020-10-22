@@ -44,8 +44,8 @@ class Handler extends ExceptionHandler
      * Render an exception into an HTTP response.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \Exception  $exception
-     * @return \Illuminate\Http\Response
+     * @param  AuthenticationException  $exception
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response
      */
     public function render($request, Exception $exception)
     {
@@ -59,8 +59,12 @@ class Handler extends ExceptionHandler
            return response()->json(['error' => 'Unauthenticated.'], 401);
        }
 
-       if(in_array('admin', $exception->guards())){
+       if(in_array('admin', $exception->guards(), true)){
            return redirect()->guest(route('admin.login'));
+       }
+
+       if(in_array('jinji', $exception->guards(), true)){
+        return redirect()->guest(route('jinji.login'));
        }
 
        return redirect()->guest(route('login'));

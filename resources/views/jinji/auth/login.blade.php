@@ -1,14 +1,14 @@
-@extends('layouts.admin')
+@extends('layouts.jinji')
 
 @section('content')
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">ログイン</div>
+                <div class="panel-heading">採用担当　ログイン</div>
 
                 <div class="panel-body">
-                    <form class="form-horizontal" method="POST" action="{{ route('admin.login') }}">
+                    <form class="form-horizontal" method="POST" action="{{ route('jinji.login') }}">
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
@@ -55,13 +55,12 @@
                                     ログイン
                                 </button>
 
-                                <a class="btn btn-link" href="{{ route('admin.password.request') }}">
-                                    パスワードをお忘れですか？
+                                <a class="btn btn-link" href="{{ route('jinji.password.request') }}">
+                                    パスワードをお忘れですか?
                                 </a>
                             </div>
                         </div>
                     </form>
-                    <div class="col-md-6 col-md-offset-4"><a href="{{ route('login') }}">学生の方はこちら</a></div>
                 </div>
             </div>
         </div>

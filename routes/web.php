@@ -1,39 +1,56 @@
 <?php
-
-Route::get('/', function () {
-    return view('top');
-});
-
-Route::get('/check', function () {
-    return view('check');
-});
-
-//学生用ページ
-//ログイン認証など
+//---------------------------------------------------------------------------------------------------------
 Auth::routes();
-//ログイン後トップページ(面談リクエスト)
-Route::get('home', 'User\HomeController@index')->name('home');
-Route::post('home', 'User\HomeController@request');
+
+//認証不要
+Route::get('/', function () { return view('top'); });
+Route::get('/check', function () { return view('check'); });
 
 
-//社員用ページ
-Route::group(['prefix' => 'admin'], function(){
-    //ログイン後トップページ
+//User　認証後
+Route::group(['middleware' => 'auth:user'], function(){
+    Route::get('home', 'User\HomeController@index')->name('home');
+    Route::post('home', 'User\HomeController@request');
+});
+
+
+//---------------------------------------------------------------------------------------------------------
+//Admin　認証不要
+Route::prefix('admin')->name('admin.')->group(function() {
+        Route::get('login', 'Admin\Auth\LoginController@showLoginForm')->name('login');
+        Route::post('login', 'Admin\Auth\LoginController@login');
+        Route::get('register', 'Admin\Auth\RegisterController@showRegisterForm')->name('register');
+        Route::post('register', 'Admin\Auth\RegisterController@register');
+        Route::get('password/reset', 'Admin\Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+        Route::post('password/email', 'Admin\Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+        Route::get('password/reset/{token}', 'Admin\Auth\ResetPasswordController@showResetForm')->name('password.reset');
+        Route::post('password/reset', 'Admin\Auth\ResetPasswordController@reset');
+
+});
+
+//Admin 認証後
+Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function() {
     Route::get('home', 'Admin\HomeController@index')->name('admin.home');
     Route::post('home', 'Admin\HomeController@request');
-
-    //login logout   
-    Route::get('login', 'Admin\Auth\LoginController@showLoginForm')->name('admin.login');
-    Route::post('login', 'Admin\Auth\LoginController@login');
-    Route::post('logout', 'Admin\Auth\LoginController@logout')->name('admin.logout');
-    
-    //register
-    Route::get('register', 'Admin\Auth\RegisterController@showRegisterForm')->name('admin.register');
-    Route::post('register', 'Admin\Auth\RegisterController@register');
-    
+    Route::post('logout', 'Admin\Auth\LoginController@logout')->name('admin.logout');  
 });
 
-// admin認証が必要なページ
-//Route::middleware('auth:admin')->group(function () {
-//    Route::get('admin', 'AdminController@index');
-//});
+
+//---------------------------------------------------------------------------------------------------------
+//Jinji 認証不要
+Route::prefix('jinji')->name('jinji.')->group(function() {
+    Route::get('login', 'Jinji\Auth\LoginController@showLoginForm')->name('login');
+    Route::post('login', 'Jinji\Auth\LoginController@login');
+    Route::get('register', 'Jinji\Auth\RegisterController@showRegisterForm')->name('register');
+    Route::post('register', 'Jinji\Auth\RegisterController@register');
+    Route::get('password/reset', 'Jinji\Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+    Route::post('password/email', 'Jinji\Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+    Route::get('password/reset/{token}', 'Jinji\Auth\ResetPasswordController@showResetForm')->name('password.reset');
+    Route::post('password/reset', 'Jinji\Auth\ResetPasswordController@reset');
+});
+
+//Jinji 認証後
+Route::group(['prefix' => 'jinji', 'middleware' => 'auth:jinji'], function() {
+    Route::get('home', 'Jinji\HomeController@index')->name('jinji.home');
+    Route::post('logout', 'Jinji\Auth\LoginController@logout')->name('jinji.logout');  
+});

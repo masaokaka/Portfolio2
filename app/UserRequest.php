@@ -15,4 +15,14 @@ class UserRequest extends Model
         'date', 'time', 'job','obog','gender','age','interview','user_id'
     ];
 
+    public static $rules = array(
+        'date' => 'required|date',
+        'time' => 'required|integer',
+        'job' => 'required|string',
+        'obog' => 'required|integer',
+        'gender' => 'required|string',
+        'age' => 'required|string',
+        'interview' => 'required|string',
+    );
+
 }

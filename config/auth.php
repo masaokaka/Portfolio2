@@ -4,7 +4,7 @@ return [
 
     /*Authentifivcation default*/
     'defaults' => [
-        'guard' => 'web',
+        'guard' => 'user',
         'passwords' => 'users',
     ],
 
@@ -29,6 +29,14 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+
+        'jinji' => [
+            'driver' => 'session',
+            'provider' => 'jinjis',
+        ],
+
+
+        
     ],
 
     /*User providers*/
@@ -41,6 +49,11 @@ return [
         'admins' => [
             'driver' => 'eloquent',
             'model' => App\Admin::class,
+        ],
+
+        'jinjis' => [
+            'driver' => 'eloquent',
+            'model' => App\Jinji::class,
         ],
 
         // 'users' => [
@@ -59,6 +72,12 @@ return [
 
         'admins' => [
             'provider' => 'admins',
+            'table' => 'password_resets',
+            'expire' => 60,
+        ],
+
+        'jinjis' => [
+            'provider' => 'jinjis',
             'table' => 'password_resets',
             'expire' => 60,
         ],

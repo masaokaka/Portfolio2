@@ -4,8 +4,9 @@ namespace App\Http\Controllers\Admin\Auth;
 
 use App\User;
 use App\Admin;
-use App\Http\Controllers\Admin\Controller;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
 class RegisterController extends Controller
@@ -75,6 +76,6 @@ class RegisterController extends Controller
 
     protected function guard()
     {
-        return \Auth::guard('admin');
+        return Auth::guard('admin');
     }
 }

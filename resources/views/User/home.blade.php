@@ -8,6 +8,7 @@
             <div class="col">
                 <h2>面談リクエスト</h2>    
             </div>
+            <p>{{ $msg }}</p>
             <div class="col">
                 <h3>日時</h3>
                 <input type="date" name="date" min="<?php echo date("Y-m-d");?>" max="<?php echo date("Y-m-d", strtotime('+10 day'));?>">
@@ -34,7 +35,8 @@
             </div>
             <div class="col">
                 <h3>OBOG</h3>
-                <label><input type="checkbox" name="obog" value="1">希望する</label>
+                <label><input type="radio" name="obog" value="1" checked>希望する</label>
+                <label><input type="radio" name="obog" value="0">希望しない</label>
             </div>
             <div class="col">
                 <h3>性別</h3>
@@ -55,7 +57,7 @@
                 <label><input type="radio" name="interview" value="offline">オフライン</label>
                 <label><input type="radio" name="interview" value="na">どちらでも良い</label>
             </div>
-            <input type="hidden" name="admin_id" value="{{ Auth::user()->id }}">
+            <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
             <div class="col">
                 <button type="submit" class="btn btn-primary">リクエスト送信</button>
             </div>
