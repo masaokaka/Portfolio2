@@ -43,9 +43,9 @@ class HomeController extends Controller
     {
         $date = new DateTime();
         $this->validate($request, AdminRequest::$rules);
+        $param = AdminRequest::where('admin_id',$request->admin_id)->first();
         //アップデート
-        if(AdminRequest::where('admin_id',$request->admin_id)){
-            $param = AdminRequest::where('admin_id',$request->admin_id)->first();
+        if(isset($param)){
             $form = $request->all();
             $param->fill($form)->save();
             $msg = ['msg'=>'リクエストの更新に成功しました。',];

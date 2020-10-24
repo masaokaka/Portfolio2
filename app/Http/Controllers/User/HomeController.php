@@ -6,6 +6,7 @@ use App\UserRequest;
 use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\controller;
 
 class HomeController extends Controller
@@ -41,13 +42,14 @@ class HomeController extends Controller
     {
         $date = new DateTime();
         $this->validate($request, UserRequest::$rules);
+        $param = UserRequest::where('user_id',$request->user_id)->first();
         //アップデート
-        if(UserRequest::where('user_id',$request->user_id)){
-            $param = UserRequest::where('user_id',$request->user_id)->first();
+        if(isset($param)){
             $form = $request->all();
             $param->fill($form)->save();
             $msg = ['msg'=>'リクエストの更新に成功しました。',];
-        }else{
+        //新規リクエスト
+        } else {
             $param = [
                 'date' => $request['date'],
                 'time' => $request['time'],
@@ -63,6 +65,6 @@ class HomeController extends Controller
         DB::table('user_requests')->insert($param);
         $msg = ['msg'=>'リクエストの送信に成功しました。',];
         }
-        return view('User/home', $msg);
+        return view('user/home', $msg);
     }
 }

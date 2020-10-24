@@ -31,7 +31,8 @@ class HomeController extends Controller
     public function index()
     {
         $users = User::all();
-        return view('jinji.home', ['users' => $users]);
+        $admins = Admin::all();
+        return view('jinji.home', ['users' => $users, 'admins' => $admins]);
     }
 
     protected function guard()

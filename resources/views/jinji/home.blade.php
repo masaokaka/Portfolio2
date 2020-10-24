@@ -19,7 +19,25 @@
                             女性
                         @endif
                     </td>
-                    <td>0件</td>
+                    <td>
+                        <?php
+                        $count = 0;
+                        $user_req_date = optional($user->user_request)->date;
+                        $user_req_time = optional($user->user_request)->time;
+                        if((isset($user_req_date)) && (isset($user_req_time))){
+                            foreach($admins as $admin){
+                                $admin_req_date = optional($admin->admin_request)->date;
+                                $admin_req_time = optional($admin->admin_request)->time;
+                                if(($admin_req_date === $user_req_date) && ($admin_req_time === $user_req_time)){
+                                    $count++;
+                                }
+                            } 
+                        ;?>
+                        <a href="#">{{ $count }}件</a>
+                        <?php }else{ ;?>
+                        0件
+                        <?php } ;?>
+                    </td>
                 </tr>
             @endforeach
         </table>
