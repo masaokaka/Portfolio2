@@ -35,6 +35,15 @@ class HomeController extends Controller
         return view('jinji.home', ['users' => $users, 'admins' => $admins]);
     }
 
+    public function match(Request $request)
+    {
+        $user_data = User::find($request->user_id);
+        $count = ($request->count);
+        $admins = Admin::all();
+        $param =['user_data'=>$user_data, 'admins'=>$admins, 'count'=>$count,];
+        return view('jinji.match', $param);
+    }
+
     protected function guard()
     {
         return Auth::guard('jinji');

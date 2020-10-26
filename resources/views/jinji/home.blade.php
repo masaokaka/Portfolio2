@@ -20,23 +20,28 @@
                         @endif
                     </td>
                     <td>
-                        <?php
-                        $count = 0;
-                        $user_req_date = optional($user->user_request)->date;
-                        $user_req_time = optional($user->user_request)->time;
-                        if((isset($user_req_date)) && (isset($user_req_time))){
-                            foreach($admins as $admin){
-                                $admin_req_date = optional($admin->admin_request)->date;
-                                $admin_req_time = optional($admin->admin_request)->time;
-                                if(($admin_req_date === $user_req_date) && ($admin_req_time === $user_req_time)){
-                                    $count++;
-                                }
-                            } 
-                        ;?>
-                        <a href="#">{{ $count }}件</a>
-                        <?php }else{ ;?>
-                        0件
-                        <?php } ;?>
+                        <form method="POST" action="{{ route('jinji.match') }}">
+                        {{  csrf_field() }}
+                            <?php
+                            $count = 0;
+                            $user_req_date = optional($user->user_request)->date;
+                            $user_req_time = optional($user->user_request)->time;
+                            if((isset($user_req_date)) && (isset($user_req_time))){
+                                foreach($admins as $admin){
+                                    $admin_req_date = optional($admin->admin_request)->date;
+                                    $admin_req_time = optional($admin->admin_request)->time;
+                                    if(($admin_req_date === $user_req_date) && ($admin_req_time === $user_req_time)){
+                                        $count++;
+                                    }
+                                } 
+                            ;?>
+                            <input type="hidden" name="user_id" value="{{ $user ->id }}">
+                            <input type="hidden" name="count" value="{{ $count }}">
+                            <input type=submit value="{{ $count }}件">
+                            <?php }else{ ;?>
+                            0件
+                            <?php } ;?>
+                        </form>
                     </td>
                 </tr>
             @endforeach
