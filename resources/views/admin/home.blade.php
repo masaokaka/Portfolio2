@@ -26,7 +26,6 @@
                 <h3>面談形式</h3>
                 <label><input type="radio" name="interview" value="online" checked>オンライン</label>
                 <label><input type="radio" name="interview" value="offline">オフライン</label>
-                <label><input type="radio" name="interview" value="na">どちらでも良い</label>
             </div>
             <input type="hidden" name="admin_id" value="{{ Auth::user()->id }}">
             <div class="col">

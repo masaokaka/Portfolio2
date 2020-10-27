@@ -57,7 +57,7 @@
                 <p>年次：
                     @if( $user_data ->user_request->age === "junior")
                         若手
-                    @elseif( $user_data ->user_request->age === "midddle")
+                    @elseif( $user_data ->user_request->age === "middle")
                         中堅
                     @elseif( $user_data ->user_request->age === "senior")
                         ベテラン
@@ -77,8 +77,6 @@
                     オンライン
                 @elseif( $user_data ->user_request->interview === "offline")
                     オフライン
-                @else
-                    どちらでも良い
                 @endif
                 </p>
             <h2>マッチした社員　{{ $count }}件</h2>
@@ -96,23 +94,61 @@
                             if(($admin_req_date === $user_req_date) && ($admin_req_time === $user_req_time)){
                     ?>
                                 <td>{{ $admin->name }}</td>
-                                <td>{{ $admin->job }}</td>
-                                <td>{{ $admin->gender }}</td>
-                                <td>{{ $admin->age }}</td>
-                                <td>{{ $admin->university }}</td>
-                                <td>{{ $admin->admin_request->interview }}</td>
                                 <td>
-                                <form method="POST" action="#">
+                                    @if( $admin->job === "na")
+                                        希望なし
+                                    @elseif( $admin->job === "sales")
+                                        営業
+                                    @elseif( $admin->job === "accont")
+                                        経理
+                                    @elseif( $admin->job === "hr")
+                                        人事
+                                    @elseif( $admin->job === "law")
+                                        法務
+                                    @elseif( $admin->job === "cp")
+                                        経営企画
+                                    @endif
+                                </td>
+                                <td>
+                                    @if($admin->gender === "man")
+                                        男
+                                    @else
+                                        女
+                                    @endif
+                                </td>
+                                <td>
+                                    @if($admin->age === "junior")
+                                        若手
+                                    @elseif($admin->age === "middle")
+                                        中堅
+                                    @elseif($admin->age === "senior")
+                                        ベテラン
+                                    @endif
+                                </td>
+                                <td>{{ $admin->university }}</td>
+                                <td>
+                                @if($admin->admin_request->interview === "online")
+                                    オンライン
+                                @elseif($admin->admin_request->interview === "offline")
+                                    オフライン
+                                @else
+                                    どちらでも良い
+                                @endif
+                                </td>
+                                <td>
+                                <form method="POST" action="match_complete">
                                     {{  csrf_field() }}
-                                    <input type="submit" value="Fix" >
+                                    <input type="hidden" name="user_id" value="{{ $user_data->id }}">
+                                    <input type="hidden" name="admin_id" value="{{ $admin->id }}">
+                                    <input type="hidden" name="date" value="{{ $user_data ->user_request ->date }}">
+                                    <input type="hidden" name="time" value="{{ $user_data ->user_request ->time }}">
+                                    <input type="hidden" name="interview" value="{{ $user_data ->user_request ->interview }}">
+                                    <input type="submit" value="調整する">
                                 </form>
                                 </td>
                     <?php   };
                         };
                     ?>
-                                    
-                    
-
             </table>
     </div>
 </div>
