@@ -28,8 +28,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $msg = ['msg'=>'',];
-        return view('user.home', $msg);
+        $param = DB::table('match_requests')->where('user_id', Auth::user()->id)->first();
+        if(isset($param)){
+            return view('user.reserved', ['param' => $param]);
+        }else{
+            $msg = ['msg'=>'',];
+            return view('user.home', $msg);
+        }
     }
 
     /**

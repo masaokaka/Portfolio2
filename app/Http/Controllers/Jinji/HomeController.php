@@ -60,7 +60,7 @@ class HomeController extends Controller
             'created_at' => $date,
             'updated_at' => $date,
             ];
-        DB::table('match')->insert($param);
+        DB::table('match_requests')->insert($param);
         DB::table('user_requests')->where('user_id', $request->user_id)->delete();
         DB::table('admin_requests')->where('admin_id', $request->admin_id)->delete();
         return view('jinji/match_complete');

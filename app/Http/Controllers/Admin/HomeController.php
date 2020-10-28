@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\AdminRequest;
+use App\MatchRequest;
 use DateTime;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
@@ -29,8 +30,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $msg = ['msg'=>'',];
-        return view('admin.home', $msg);
+        $param = DB::table('match_requests')->where('admin_id', Auth::user()->id)->first();
+        if(isset($param)){
+            return view('admin.reserved', ['param' => $param]);
+        }else{
+            $msg = ['msg'=>'',];
+            return view('admin.home', $msg);
+        }
     }
 
     /**
@@ -64,6 +70,7 @@ class HomeController extends Controller
         }
         return view('admin/home',$msg);
     }
+
 
     protected function guard()
     {
