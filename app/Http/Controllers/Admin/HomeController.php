@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\AdminRequest;
 use App\MatchRequest;
+use App\Evaluation;
 use DateTime;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
@@ -32,7 +33,11 @@ class HomeController extends Controller
     {
         $param = DB::table('match_requests')->where('admin_id', Auth::user()->id)->first();
         if(isset($param)){
-            return view('admin.reserved', ['param' => $param]);
+            if(($param->date) < (date("Y-m-d"))){
+                return view('admin.evaluation', ['param' => $param]);
+            } else {
+                return view('admin.reserved', ['param' => $param]);
+            }
         }else{
             $msg = ['msg'=>'',];
             return view('admin.home', $msg);
@@ -63,7 +68,7 @@ class HomeController extends Controller
                 'interview' => $request['interview'],
                 'admin_id' => $request['admin_id'],
                 'created_at' => $date,
-                 'updated_at' => $date,
+                'updated_at' => $date,
             ];
             DB::table('admin_requests')->insert($param);
             $msg = ['msg'=>'リクエストの送信に成功しました。',];
@@ -71,6 +76,29 @@ class HomeController extends Controller
         return view('admin/home',$msg);
     }
 
+
+    public function evaluation(Request $request)
+    {
+        $date = new DateTime();
+        $this->validate($request, Evaluation::$rules);
+        $param = [
+            'nonverbal' => $request['nonverbal'],
+            'initiative' => $request['initiative'],
+            'communication' => $request['communication'],
+            'aspiration' => $request['aspiration'],
+            'comment' => $request['comment'],
+            'feedback' => $request['feedback'],
+            'date' => $request['date'],
+            'interview' => $request['interview'],
+            'admin_id' => $request['admin_id'],
+            'user_id' => $request['user_id'],
+            'created_at' => $date,
+            'updated_at' => $date,
+        ];
+        DB::table('evaluations')->insert($param);
+        $msg = ['msg'=>'学生評価アンケートへのご回答ありがとうございました',];
+        return view('admin/home',$msg);
+    }
 
     protected function guard()
     {

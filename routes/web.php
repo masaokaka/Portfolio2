@@ -32,6 +32,7 @@ Route::prefix('admin')->name('admin.')->group(function() {
 Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function() {
     Route::get('home', 'Admin\HomeController@index')->name('admin.home');
     Route::post('home', 'Admin\HomeController@request');
+    Route::post('home', 'Admin\HomeController@evaluation')->name('admin.evaluation');
     Route::post('logout', 'Admin\Auth\LoginController@logout')->name('admin.logout');  
 });
 
