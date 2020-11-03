@@ -8,8 +8,7 @@ use App\Jinji;
 use App\User;
 use App\Admin;
 use App\MatchRequest;
-use App\AdminRequest;
-use App\UserRequest;
+use App\Evaluation;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -35,7 +34,9 @@ class HomeController extends Controller
     {
         $users = User::all();
         $admins = Admin::all();
-        return view('jinji.home', ['users' => $users, 'admins' => $admins]);
+        $matches = MatchRequest::all();
+        $evaluations = Evaluation::all();
+        return view('jinji.home', ['users' => $users, 'admins' => $admins, 'matches' => $matches, 'evaluations' => $evaluations,]);
     }
 
     public function match(Request $request)
@@ -66,6 +67,15 @@ class HomeController extends Controller
         return view('jinji/match_complete');
 
     }
+    public function result()
+    {
+        $users = User::all();
+        $admins = Admin::all();
+        $evaluations = Evaluation::all();
+        return view('jinji.result', ['users' => $users, 'admins' => $admins, 'evaluations' => $evaluations,]);
+    }
+
+
 
     protected function guard()
     {

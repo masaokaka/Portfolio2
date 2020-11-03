@@ -18,6 +18,11 @@ class ForgotPasswordController extends Controller
     |
     */
 
+    public function showLinkRequestForm()
+    {
+        return view('jinji.auth.passwords.email');
+    }
+    
     use SendsPasswordResetEmails;
 
     /**
@@ -27,6 +32,6 @@ class ForgotPasswordController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        $this->middleware('guest:jinji');
     }
 }

@@ -61,11 +61,11 @@
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('jinji.login') }}">{{__('Login')}}</a>
+                                <a class="nav-link" href="{{ route('jinji.login') }}">{{__('ログイン')}}</a>
                             </li>
                             <li class="nav-item">
                                 @if(Route::has('register'))
-                                    <a class="nav-link" href="{{ route('jinji.register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link" href="{{ route('jinji.register') }}">{{ __('新規登録') }}</a>
                                 @endif
                             </li>
                         @else
@@ -79,7 +79,7 @@
                                         <a href="{{ route('jinji.logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                            {{ __('Logout') }}
+                                            {{ __('ログアウト') }}
                                         </a>
 
                                         <form id="logout-form" action="{{ route('jinji.logout') }}" method="POST" style="display: none;">

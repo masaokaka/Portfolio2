@@ -55,5 +55,6 @@ Route::group(['prefix' => 'jinji', 'middleware' => 'auth:jinji'], function() {
     Route::get('home', 'Jinji\HomeController@index')->name('jinji.home');
     Route::post('match', 'Jinji\HomeController@match')->name('jinji.match');
     Route::post('match_complete', 'Jinji\HomeController@match_complete')->name('jinji.match_complete');
+    Route::post('result', 'Jinji\HomeController@result')->name('jinji.result');
     Route::post('logout', 'Jinji\Auth\LoginController@logout')->name('jinji.logout');  
 });
