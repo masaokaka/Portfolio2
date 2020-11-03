@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Evaluation extends Model
 {
     protected $fillable = [
-        'nonverbal', 'initiative','communication','aspiration','comment','feedback','interview','date','admin_id','user_id',];
+        'nonverbal', 'initiative','communication','aspiration','comment','feedback','match_id','interview','date','admin_id','user_id',];
     
     public static $rules = array(
         'nonverbal' => 'required',
@@ -16,6 +16,7 @@ class Evaluation extends Model
         'aspiration'=> 'required',
         'comment'=> 'required|string|max:500',
         'feedback'=>'nullable|string|max:500',
+        'match_id'=> 'required',
         'admin_id'=> 'required',
         'user_id'=> 'required',
         'date' => 'required|date',

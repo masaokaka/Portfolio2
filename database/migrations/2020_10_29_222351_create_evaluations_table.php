@@ -21,6 +21,7 @@ class CreateEvaluationsTable extends Migration
             $table->integer('aspiration');
             $table->string('comment',500);
             $table->string('feedback',500);
+            $table->integer('match_id');
             $table->integer('user_id');
             $table->integer('admin_id');
             $table->string('interview');

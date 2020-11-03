@@ -48,6 +48,7 @@
                 <p>⑥面談に関するご意見など(任意)</p>
                     <input type="text" style="width: 400px; height: 100px;" name="feedback">
 
+                <input type="hidden" name="match_id" value="{{ $param->id }}">
                 <input type="hidden" name="interview" value="{{ $param->interview }}">
                 <input type="hidden" name="date" value="{{ $param->date }}">
                 <input type="hidden" name="admin_id" value="{{ $param->admin_id }}">

@@ -11,7 +11,7 @@
             <p>{{ $msg }}</p>
             <div class="col">
                 <h3>日時</h3>
-                <input type="date" name="date" min="<?php echo date("Y-m-d");?>" max="<?php echo date("Y-m-d", strtotime('+10 day'));?>">
+                <input type="date" name="date" min="<?php echo date("Y-m-d");?>" max="<?php echo date("Y-m-d", strtotime('+20 day'));?>">
                 <select name="time">
                     <option value="1">09:00〜10:00</option>
                     <option value="2">10:00〜11:00</option>

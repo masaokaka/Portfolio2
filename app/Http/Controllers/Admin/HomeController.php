@@ -31,16 +31,32 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $param = DB::table('match_requests')->where('admin_id', Auth::user()->id)->first();
-        if(isset($param)){
-            if(($param->date) < (date("Y-m-d"))){
-                return view('admin.evaluation', ['param' => $param]);
-            } else {
-                return view('admin.reserved', ['param' => $param]);
-            }
-        }else{
+        //調整済みの面談のうち、最新のデータを一つ取得
+        $param = DB::table('match_requests')->where('admin_id', Auth::user()->id)->orderby('id', 'desc')->first();
+        
+        //面談予定が過去含め0であればリクエスト画面を表示
+        if(empty($param)){
             $msg = ['msg'=>'',];
             return view('admin.home', $msg);
+        }
+
+        //最新の面談予定の日程が現在の日程を過ぎていないかチェック
+        if($param->date < date("Y-m-d")){
+            $evaluation = DB::table('evaluations')->where('admin_id', Auth::user()->id)->orderby('match_id', 'desc')->first();
+            //面談が初めてでアンケートの回答データがない場合
+            if(empty($evaluation)){
+                return view('admin.evaluation', ['param' => $param]);
+            }else{
+                //面談が２回目での場合、アンケートに回答済か否かをチェック。回答していれば、面談リクエスト画面へ遷移。回答していなければ、回答画面へ。
+                if(($param->id === $evaluation->match_id)){
+                    $msg = ['msg'=>'',];
+                    return view('admin.home', $msg);
+                }else{
+                    return view('admin.evaluation', ['param' => $param]);
+                }
+            }
+        } else {
+            return view('admin.reserved', ['param' => $param]);
         }
     }
 
@@ -88,12 +104,11 @@ class HomeController extends Controller
             'aspiration' => $request['aspiration'],
             'comment' => $request['comment'],
             'feedback' => $request['feedback'],
+            'match_id' => $request['match_id'],
             'date' => $request['date'],
             'interview' => $request['interview'],
             'admin_id' => $request['admin_id'],
             'user_id' => $request['user_id'],
-            'created_at' => $date,
-            'updated_at' => $date,
         ];
         DB::table('evaluations')->insert($param);
         $msg = ['msg'=>'学生評価アンケートへのご回答ありがとうございました',];

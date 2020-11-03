@@ -50,8 +50,10 @@
                 <p>性別：
                     @if( $user_data ->user_request->gender === "man")
                         男
-                    @else
+                    @elseif( $user_data ->user_request->gender === "woman")
                         女
+                    @else
+                        希望なし
                     @endif    
                 </p>
                 <p>年次：
