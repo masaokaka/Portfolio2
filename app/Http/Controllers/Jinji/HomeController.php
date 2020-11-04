@@ -30,9 +30,14 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        $users = User::all();
+    public function index(Request $request)
+    {   
+        if(isset($request->sort)){
+            $sort = $request->sort;
+            $users = User::orderBy($sort, 'asc')->get();
+        }else{
+            $users = User::all();
+        };
         $admins = Admin::all();
         $matches = MatchRequest::all();
         $evaluations = Evaluation::all();
@@ -67,12 +72,13 @@ class HomeController extends Controller
         return view('jinji/match_complete');
 
     }
-    public function result()
+    public function result(Request $request)
     {
-        $users = User::all();
-        $admins = Admin::all();
-        $evaluations = Evaluation::all();
-        return view('jinji.result', ['users' => $users, 'admins' => $admins, 'evaluations' => $evaluations,]);
+        $user = DB::table('users')->where('id', $request->user_id)->first();
+        $evaluation = DB::table('evaluations')->where('user_id', $request->user_id)->first();
+        $admin_id = $evaluation->admin_id;
+        $admin = DB::table('admins')->where('id', $admin_id)->first();
+        return view('jinji.result', ['user' => $user, 'admin' => $admin, 'evaluation' => $evaluation,]);
     }
 
 

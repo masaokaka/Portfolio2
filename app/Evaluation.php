@@ -22,4 +22,5 @@ class Evaluation extends Model
         'date' => 'required|date',
         'interview' => 'required|string',
     );
+
 }

@@ -30,4 +30,5 @@ class User extends Authenticatable
     public function user_request(){
         return $this->hasOne('App\UserRequest');
     }
+
 }

@@ -1,12 +1,21 @@
 @extends('layouts.jinji')
 
 @section('content')
+<style>
+    tr th a:link{ color: white;}
+    tr th a:hover{ color: white;}
+    tr th a:visited{ color: white;}
+    tr th a:active{ color: white;}
+</style>
 <div class="container">
     <div class="row">
         <table>
             <h2>面談希望者一覧</h2>
             <tr>
-                <th>氏名</th><th>大学</th><th>性別</th><th>マッチ件数</th>
+                <th><a href="/jinji/home?sort=name">氏名</a></th>
+                <th><a href="/jinji/home?sort=university">大学</th>
+                <th><a href="/jinji/home?sort=gender">性別</th>
+                <th>状態</th>
             </tr>
             @foreach($users as $user)
                 <tr>
@@ -40,7 +49,7 @@
                         ;?>
                             <input type="hidden" name="user_id" value="{{ $user ->id }}">
                             <input type="hidden" name="count" value="{{ $count }}">
-                            <input type=submit value="{{ $count }}件">
+                            <input type=submit value="{{ $count }}件マッチしました">
                         <?php
                         }
                         } 
@@ -58,11 +67,11 @@
                                         <form method="POST" action="{{ route('jinji.result') }}">
                                         {{  csrf_field() }}
                                             <input type="hidden" name="user_id" value="{{ $user->id }}">
-                                            <input type=submit value="結果">
+                                            <input type=submit value="結果を見る">
                                         </form>        
                             <?php
                                 }elseif(in_array($user->id, $match_user_id) === true){
-                                    echo "面談中";
+                                    echo "調整済";
                                 }
                             ?>
                     </td>
