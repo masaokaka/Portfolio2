@@ -6,7 +6,6 @@ Auth::routes();
 Route::get('/', function () { return view('top'); });
 Route::get('/check', function () { return view('check'); });
 
-
 //User　認証後
 Route::group(['middleware' => 'auth:user'], function(){
     Route::get('home', 'User\HomeController@index')->name('home');

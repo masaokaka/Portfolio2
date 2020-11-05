@@ -32,16 +32,16 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {   
-        if(isset($request->sort)){
-            $sort = $request->sort;
-            $users = User::orderBy($sort, 'asc')->get();
+        $sort = $request->sort;
+        if(isset($sort)){
+            $users = User::orderBy($sort, 'asc')->paginate(10);
         }else{
-            $users = User::all();
-        };
+            $users = User::paginate(10);
+        }
         $admins = Admin::all();
         $matches = MatchRequest::all();
         $evaluations = Evaluation::all();
-        return view('jinji.home', ['users' => $users, 'admins' => $admins, 'matches' => $matches, 'evaluations' => $evaluations,]);
+        return view('jinji.home', ['users' => $users, 'admins' => $admins, 'matches' => $matches, 'evaluations' => $evaluations, 'sort' => $sort]);
     }
 
     public function match(Request $request)

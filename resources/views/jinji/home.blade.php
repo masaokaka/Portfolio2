@@ -2,10 +2,10 @@
 
 @section('content')
 <style>
-    tr th a:link{ color: white;}
-    tr th a:hover{ color: white;}
-    tr th a:visited{ color: white;}
-    tr th a:active{ color: white;}
+    tr th a:link { color: white; }
+    tr th a:hover { color: white; }
+    tr th a:visited { color: white; }
+    tr th a:active { color: white; }
 </style>
 <div class="container">
     <div class="row">
@@ -15,6 +15,7 @@
                 <th><a href="/jinji/home?sort=name">氏名</a></th>
                 <th><a href="/jinji/home?sort=university">大学</th>
                 <th><a href="/jinji/home?sort=gender">性別</th>
+                <th><a href="/jinji/home?sort=created_at">登録日時</th>
                 <th>状態</th>
             </tr>
             @foreach($users as $user)
@@ -28,6 +29,7 @@
                             女性
                         @endif
                     </td>
+                    <td>{{ $user ->created_at }}</td>
                     <td>
                         <form method="POST" action="{{ route('jinji.match') }}">
                         {{  csrf_field() }}
@@ -78,6 +80,7 @@
                 </tr>
             @endforeach
         </table>
+        {{ $users->appends(['sort' => $sort])->links() }}
     </div>
 </div>
 @endsection
