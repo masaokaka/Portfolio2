@@ -14,7 +14,9 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <style>
         body{
-            background-color: orange;
+            background-color: 	#17a2b8;
+            color: black;
+            font-family: Arial, Helvetica, sans-serif;
         }
     </style>
 </head>
