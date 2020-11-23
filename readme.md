@@ -35,7 +35,7 @@ PHPのフレームワークであるLaravelの学習アウトプットとして�
 ・社員が面談後に学生の評価を入力できる機能（採用担当はそれを閲覧できる）
 
 ・並び替え機能、ページング機能
-
+![change_order](https://user-images.githubusercontent.com/66907534/99950268-a24eaa80-2dbf-11eb-87ce-2eaeb3d4180d.gif)
 【工夫したポイント】
 ・マルチログイン機能
 
