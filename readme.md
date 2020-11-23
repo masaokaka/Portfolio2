@@ -1,12 +1,29 @@
-<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
+##このアプリについて
+PHPのフレームワークであるLaravelの学習アウトプットとして作成しました。
+採用担当の経験から、時間がかかる、かつ単純作業である面談の調整業務を簡単にできないかと思い、開発しました。
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+【サービス名】QuickFix
+【概要】
+採用業務における自社社員と学生の面談調整を簡単に行うことができるアプリ
+【想定する利用者】
+・企業の採用担当
+・企業のリクルーター社員
+・学生
+【使用言語】HTML/CSS/JavaScript(jQuery,Bootstrap),PHP(Laravel),MySQL
+【制作期間】1ヶ月(Laravelの学習を含む)
+【機能】
+・ログインログアウト、ユーザー登録
+・マルチログイン機能(採用担当、社員、学生)
 
-## このアプリについて
+・社員/学生が面談日程や形式、面談する相手の希望(学生のみ)などを入力してリクエストできる機能
+・採用担当が社員と学生のリクエストを元に面談を調整する機能
+・並び替え機能、ページング機能
 
+【工夫したポイント】
+・マルチログイン機能
 
+【今後やってみたいこと】
+・レイアウトやデザインを分かりやすくする
+・面談日が近づいたらメールが届く昨日の追加
+・幅広く日時の指定ができる機能
+・面談終了後、評価の高い学生に次のステップに案内するメールを自動送信できる機能
