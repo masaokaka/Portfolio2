@@ -43,6 +43,7 @@ HTML/CSS/JavaScript(jQuery,Bootstrap),PHP(Laravel),MySQL
 ![面談リクエスト（学生）](https://user-images.githubusercontent.com/66907534/99963104-a0dbad00-2dd4-11eb-8a43-2b2e8b0682fa.gif)
 
 ・社員が面談日程や形式を入力してリクエストできる機能（ログイン後）
+![面談リクエスト（社員）](https://user-images.githubusercontent.com/66907534/99963586-573f9200-2dd5-11eb-84c7-1009e2561ca2.gif)
 
 ・採用担当が社員と学生のリクエストを元に面談を調整する機能
 
