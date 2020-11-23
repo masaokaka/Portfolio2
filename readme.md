@@ -39,7 +39,10 @@ HTML/CSS/JavaScript(jQuery,Bootstrap),PHP(Laravel),MySQL
 ・ユーザー登録、マルチログイン機能(採用担当、社員、学生)
 ![ログインなど](https://user-images.githubusercontent.com/66907534/99960157-a1257980-2dcf-11eb-8ebe-d2d56ca5ca8e.gif)
 
-・社員/学生が面談日程や形式、面談する相手の希望(学生のみ)などを入力してリクエストできる機能
+・学生が面談日程や形式、面談する相手の希望などを入力してリクエストできる機能（ログイン後）
+![面談リクエスト（学生）](https://user-images.githubusercontent.com/66907534/99963104-a0dbad00-2dd4-11eb-8a43-2b2e8b0682fa.gif)
+
+・社員が面談日程や形式を入力してリクエストできる機能（ログイン後）
 
 ・採用担当が社員と学生のリクエストを元に面談を調整する機能
 
