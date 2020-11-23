@@ -8,18 +8,18 @@
 ## サービス概要紹介
 
 #### 【サービス名】  
-QuickFix
+　QuickFix
 
 #### 【想定する利用者】  
-・企業の採用担当  
-・企業のリクルーター社員  
-・学生
+　・企業の採用担当  
+　・企業のリクルーター社員  
+　・学生
 
 #### 【使用言語など】
-HTML/CSS/JavaScript(jQuery,Bootstrap),PHP(Laravel),MySQL
+　HTML/CSS/JavaScript(jQuery,Bootstrap),PHP(Laravel),MySQL
 
 #### 【制作期間】
-1ヶ月(Laravelの学習を含む)
+　1ヶ月(Laravelの学習を含む)
 
 #### 【利用の流れ】  
 ###### ○学生  
