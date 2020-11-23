@@ -56,7 +56,7 @@ HTML/CSS/JavaScript(jQuery,Bootstrap),PHP(Laravel),MySQL
 ![面談終了後（学生）](https://user-images.githubusercontent.com/66907534/99966147-3da04980-2dd9-11eb-8d40-844764c99cd3.png)  
 
 ##### ○採用担当は社員が入力した評価を閲覧することができる  
-
+![評価閲覧（人事）](https://user-images.githubusercontent.com/66907534/99966645-f49cc500-2dd9-11eb-8145-2f6a524d7e95.gif)
 
 #### 【工夫したポイント】
 ・マルチログイン機能の実装
@@ -70,3 +70,4 @@ HTML/CSS/JavaScript(jQuery,Bootstrap),PHP(Laravel),MySQL
 ・幅広く日時の指定ができる機能  
 ・面談終了後、評価の高い学生に次のステップに案内するメールを自動送信できる機能  
 ・面談キャンセル機能  
+・学生/社員の削除機能　など
