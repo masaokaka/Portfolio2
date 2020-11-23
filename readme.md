@@ -52,6 +52,7 @@ HTML/CSS/JavaScript(jQuery,Bootstrap),PHP(Laravel),MySQL
 
 ##### ○面談日が過ぎると社員側は学生の評価を入力する画面が、学生は「ありがとうございました」と表示される機能  
 ![面談終了後（社員）](https://user-images.githubusercontent.com/66907534/99966066-206b7b00-2dd9-11eb-99cf-c5cd3a41fb3a.gif)  
+![面談終了後（学生）](https://user-images.githubusercontent.com/66907534/99966147-3da04980-2dd9-11eb-8d40-844764c99cd3.png)  
 
 ##### ○採用担当は社員が入力した評価を閲覧することができる  
 
